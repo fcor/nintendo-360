@@ -4,3 +4,10 @@
 *.js.meta
 node_modules/
 build/
+
+node_modules/react-360/*
+!node_modules/react-360/Libraries/
+node_modules/react-360/Libraries/*
+!node_modules/react-360/Libraries/VRReactOverrides/
+node_modules/react-360/Libraries/VRReactOverrides/*
+!node_modules/react-360/Libraries/VRReactOverrides/processTransform.vr.js
