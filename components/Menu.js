@@ -27,21 +27,22 @@ export default class Menu extends React.Component {
 
 const styles = StyleSheet.create({
   menu: {
-    width: 300,
-    height: 300,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    borderColor: '#303050',
-    borderWidth: 2,
-    flexDirection: 'row',
+    width: 900,
+    height: 400,
+    // backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'transparent',
+    // borderColor: '#303050',
+    // borderWidth: 2,
+    flexDirection: 'column',
     justifyContent: 'flex-start',
-    alignItems: 'center',
+    alignItems: 'flex-end',
     flexWrap: 'wrap',
     transform: [
       {translate: [0, 0, -2]}
     ]
   },
   characterLabel: {
-    color: '#fff',
+    color: '#000',
     fontSize: 30,
     width: 90,
   }

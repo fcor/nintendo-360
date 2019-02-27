@@ -7,8 +7,8 @@ function init(bundle, parent, options = {}) {
     ...options,
   });
 
-  const rightPanel = new Surface(300, 300, Surface.SurfaceShape.Flat);
-  rightPanel.setAngle(0.6, 0);
+  const rightPanel = new Surface(900, 400, Surface.SurfaceShape.Cylinder);
+  // rightPanel.setAngle(0.6, 0);
   r360.renderToSurface(
     r360.createRoot('menu'),
     rightPanel,

@@ -47,8 +47,8 @@ export default class Model extends React.Component {
       <View>
         <AmbientLight intensity={1.0} color={'#ffffff'} />
         <PointLight
-          intensity={0.4}
-          style={{transform: [{translate: [0, 4, -1]}]}}
+          intensity={1}
+          style={{transform: [{translate: [0, 3, 2]}]}}
         />
         <Entity 
           source={{gltf2: asset('./models/koopa/koopa.glb')}} 
