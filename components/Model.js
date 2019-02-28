@@ -48,15 +48,15 @@ export default class Model extends React.Component {
         <AmbientLight intensity={1.0} color={'#ffffff'} />
         <PointLight
           intensity={1}
-          style={{transform: [{translate: [0, 3, 2]}]}}
+          style={{transform: [{translate: [0, 3, 3]}]}}
         />
         <Entity 
-          source={{gltf2: asset('./models/koopa/koopa.glb')}} 
+          source={{gltf2: asset('./models/yoshi/yoshi.glb')}} 
           style={{
             transform: [
-              {scaleX: 0.01},
-              {scaleY: 0.01},
-              {scaleZ: 0.01},
+              {scaleX: 0.3},
+              {scaleY: 0.3},
+              {scaleZ: 0.3},
               {rotateY: rotation}
             ]
           }}
