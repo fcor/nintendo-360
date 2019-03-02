@@ -1,23 +1,16 @@
 import React from 'react'
-import {
-  Text,
-  View,
-  Animated,
-  VrButton,
-  StyleSheet,
-  Image,
-  asset
-} from 'react-360'
+import { View, Animated, VrButton, StyleSheet, Image, asset } from 'react-360'
+import {connect, setCharacter} from '../store'
 
 const characters = ['koopa', 'mario', 'luigi', 'bowser', 'yoshi', 'donkeykong']
 
-export default class Menu extends React.Component {
+class Menu extends React.Component {
   render() {
     return (
       <View style={styles.menu}>
         {characters.map(character => {
           return (
-            <CharacterButton character={character} />
+            <CharacterButton key={character} character={character} />
           )})
         }
       </View>
@@ -33,9 +26,9 @@ class CharacterButton extends React.Component {
   render() {
     const { character } = this.props
     return (
-      <VrButton key={`button-${character}`}  
-                onEnter={() => this.setState({hover: true})}
+      <VrButton onEnter={() => this.setState({hover: true})}
                 onExit={() => this.setState({hover: false})}
+                onClick={() => setCharacter(character)}
       >
         <Image style={[styles.image, this.state.hover ? styles.imageHover : null]} source={asset(`${character}.png`)} />
       </VrButton>
@@ -57,15 +50,9 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     flexWrap: 'wrap',
   },
-  characterLabel: {
-    color: '#000',
-    fontSize: 30,
-    width: 90,
-  },
   image: {
     width: 130,
     height: 130,
-    // marginRight: 10,
   },
   imageHover: {
     transform: [
@@ -74,3 +61,6 @@ const styles = StyleSheet.create({
   }
 });
 
+const ConnectedMenu = connect(Menu);
+
+export default ConnectedMenu;

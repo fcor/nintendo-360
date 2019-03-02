@@ -1,14 +1,11 @@
 import React from 'react'
-import {
-  asset,
-  View,
-  Animated
-} from 'react-360';
-import Entity from 'Entity';
-import AmbientLight from 'AmbientLight';
-import PointLight from 'PointLight';
+import { asset, View, Animated } from 'react-360'
+import Entity from 'Entity'
+import AmbientLight from 'AmbientLight'
+import PointLight from 'PointLight'
+import { connect } from '../store'
 
-export default class Model extends React.Component {
+class Model extends React.Component {
 
   constructor(props){
     super(props)
@@ -43,6 +40,7 @@ export default class Model extends React.Component {
 
   render() {
     const { rotation } = this.state
+    const character = this.props.character
     return (
       <View>
         <AmbientLight intensity={1.0} color={'#ffffff'} />
@@ -66,3 +64,6 @@ export default class Model extends React.Component {
   }
 };
 
+const ConnectedModel = connect(Model);
+
+export default ConnectedModel;
