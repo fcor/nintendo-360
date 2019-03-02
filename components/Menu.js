@@ -9,16 +9,36 @@ import {
   asset
 } from 'react-360'
 
-const characters = ['Koopa', 'Mario', 'Luigi', 'Bowser', 'Yoshi', 'Donkey Kong']
+const characters = ['koopa', 'mario', 'luigi', 'bowser', 'yoshi', 'donkeykong']
 
 export default class Menu extends React.Component {
   render() {
     return (
       <View style={styles.menu}>
-        <Image style={styles.image} source={asset('mario.png')} />
-        <Image style={styles.image} source={asset('mario.png')} />
-        <Image style={styles.image} source={asset('mario.png')} />
+        {characters.map(character => {
+          return (
+            <CharacterButton character={character} />
+          )})
+        }
       </View>
+    )
+  }
+}
+
+class CharacterButton extends React.Component {
+  state = {
+    hover: false,
+  }
+
+  render() {
+    const { character } = this.props
+    return (
+      <VrButton key={`button-${character}`}  
+                onEnter={() => this.setState({hover: true})}
+                onExit={() => this.setState({hover: false})}
+      >
+        <Image style={[styles.image, this.state.hover ? styles.imageHover : null]} source={asset(`${character}.png`)} />
+      </VrButton>
     )
   }
 }
@@ -26,18 +46,16 @@ export default class Menu extends React.Component {
 const styles = StyleSheet.create({
   menu: {
     width: 900,
-    height: 400,
-    // backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    height: 620,
+    paddingTop: 20,
     backgroundColor: 'transparent',
+    // backgroundColor: 'rgba(0, 0, 0, 0.5)',
     // borderColor: '#303050',
     // borderWidth: 2,
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-around',
     alignItems: 'flex-start',
     flexWrap: 'wrap',
-    transform: [
-      {translate: [0, 0, -2]}
-    ]
   },
   characterLabel: {
     color: '#000',
@@ -47,14 +65,12 @@ const styles = StyleSheet.create({
   image: {
     width: 130,
     height: 130,
+    // marginRight: 10,
+  },
+  imageHover: {
+    transform: [
+      {scale: [1.1, 1.1, 1.1]}
+    ]
   }
 });
 
-// {characters.map(character => {
-//   return (
-//     <VrButton key={`button-${character}`} >
-//       {/* <Text style={styles.characterLabel}>{character}</Text> */}
-//       <Image style={styles.image} source={asset('mario.png')} />
-//     </VrButton>
-//   )})
-// }
