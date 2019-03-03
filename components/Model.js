@@ -11,6 +11,7 @@ class Model extends React.Component {
     super(props)
     this.state = {
       rotation: 0,
+      bounceValue: new Animated.Value(1)
     }
     this.lastUpdate = Date.now();
     this.rotate = this.rotate.bind(this)
@@ -21,10 +22,38 @@ class Model extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.current !== this.props.current) {
-      this.rotation.setValue(0);
-      Animated.timing(this.rotation, {toValue: 360, duration: 20000}).start();
+    if (this.props.character !== nextProps.character) {
+      const bounceValue = this.state.bounceValue
+      // animate the character
+      const modelConfig = {
+        value: bounceValue,
+        initial: 0.3,
+        toValue: 1,
+        friction: 5
+      };
+
+      this.bounce(modelConfig);
     }
+  }
+
+  componentWillUnmount() {
+    if (this.frameHandle) {
+      cancelAnimationFrame(this.frameHandle);
+      this.frameHandle = null;
+    }
+  }
+
+    // bounce animation
+  bounce({value, initial, toValue, friction = 1.5}) {
+    value.setValue(initial);
+
+    Animated.spring(
+      value,
+      {
+        toValue,
+        friction,
+      }
+    ).start();
   }
 
   rotate() {
@@ -40,6 +69,7 @@ class Model extends React.Component {
 
   render() {
     const { rotation } = this.state
+    const scale = this.state.bounceValue
     const character = this.props.character
     return (
       <View>
@@ -48,17 +78,19 @@ class Model extends React.Component {
           intensity={1}
           style={{transform: [{translate: [0, 3, 3]}]}}
         />
-        <Entity 
-          source={{gltf2: asset('./models/yoshi/yoshi.glb')}} 
-          style={{
-            transform: [
-              {scaleX: 0.3},
-              {scaleY: 0.3},
-              {scaleZ: 0.3},
-              {rotateY: rotation}
-            ]
-          }}
-          />
+        <Animated.View style={{transform: [{scale}]}}>
+          <Entity 
+            source={{gltf2: asset('./models/yoshi/yoshi.glb')}} 
+            style={{
+              transform: [
+                {scaleX: 0.3},
+                {scaleY: 0.3},
+                {scaleZ: 0.3},
+                {rotateY: rotation}
+              ]
+            }}
+            />
+        </Animated.View>
       </View>
     );
   }
