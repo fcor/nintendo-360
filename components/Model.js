@@ -29,29 +29,31 @@ class Model extends React.Component {
         value: bounceValue,
         initial: 0.3,
         toValue: 1,
-        friction: 5
+        speed: 16,
+        bounciness: 23
       };
 
-      this.bounce(modelConfig);
+      this.bounce(modelConfig)
     }
   }
 
   componentWillUnmount() {
     if (this.frameHandle) {
       cancelAnimationFrame(this.frameHandle);
-      this.frameHandle = null;
+      this.frameHandle = null
     }
   }
 
     // bounce animation
-  bounce({value, initial, toValue, friction = 1.5}) {
+  bounce({value, initial, toValue, speed, bounciness }) {
     value.setValue(initial);
 
     Animated.spring(
       value,
       {
         toValue,
-        friction,
+        speed,
+        bounciness
       }
     ).start();
   }
