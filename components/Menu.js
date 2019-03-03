@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Animated, VrButton, StyleSheet, Image, asset } from 'react-360'
+import { View, VrButton, StyleSheet, Image, asset } from 'react-360'
 import {connect, setCharacter} from '../store'
 
 const characters = ['koopa', 'mario', 'luigi', 'bowser', 'yoshi', 'donkeykong']
@@ -19,18 +19,43 @@ class Menu extends React.Component {
 }
 
 class CharacterButton extends React.Component {
-  state = {
-    hover: false,
+  constructor(props){
+    super(props)
+    this.state = {
+      hover: false,
+    }
+    this.handleEnter = this.handleEnter.bind(this)
+    this.handleExit = this.handleExit.bind(this)
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleEnter(){
+    this.setState({
+      hover: true
+    })
+  }
+
+  handleExit(){
+    this.setState({
+      hover: false
+    })
+  }
+
+  handleClick(character){
+    setCharacter(character)
   }
 
   render() {
     const { character } = this.props
+    const hover = this.state.hover
     return (
-      <VrButton onEnter={() => this.setState({hover: true})}
-                onExit={() => this.setState({hover: false})}
-                onClick={() => setCharacter(character)}
+      <VrButton onEnter={this.handleEnter}
+                onExit={this.handleExit}
+                onClick={() => this.handleClick(character)}
       >
-        <Image style={[styles.image, this.state.hover ? styles.imageHover : null]} source={asset(`${character}.png`)} />
+        <Image style={[styles.image, hover ? styles.imageHover : null]} 
+               source={asset(`${character}.png`)} 
+        />
       </VrButton>
     )
   }
