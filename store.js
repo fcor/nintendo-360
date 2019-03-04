@@ -1,4 +1,5 @@
 import * as React from 'react';
+import characters from './characters'
 
 /**
  * If you want to share data between multiple root components, you'll need a
@@ -9,24 +10,27 @@ import * as React from 'react';
  * ensure all of our elements are synchronized.
  */
 const State = {
-  character: 'YOSHI',
+  characterID: 0,
+  characterDetails: characters[0]
 };
 
 const listeners = new Set();
 
 function updateComponents() {
   for (const cb of listeners.values()) {
-    cb();
+    cb()
   }
 }
 
 export function initialize() {
-  State.character = 'YOSHI';
-  updateComponents();
+  State.characterID = 0
+  State.characterDetails = characters[0]
+  updateComponents()
 }
 
 export function setCharacter(value) {
-  State.character = value;
+  State.characterID = value
+  State.characterDetails = characters[value]
   updateComponents();
 }
 
@@ -38,7 +42,8 @@ export function connect(Component) {
 
     _listener = () => {
       this.setState({
-        character: State.character,
+        characterID: State.characterID,
+        characterDetails: State.characterDetails,
       });
     };
 
@@ -54,7 +59,8 @@ export function connect(Component) {
       return (
         <Component
           {...this.props}
-          character={this.state.character}
+          characterID={this.state.characterID}
+          characterDetails={this.state.characterDetails}
         />
       );
     }

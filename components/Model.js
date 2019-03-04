@@ -4,6 +4,13 @@ import Entity from 'Entity'
 import AmbientLight from 'AmbientLight'
 import PointLight from 'PointLight'
 import { connect } from '../store'
+import characters from '../characters'
+
+const getModelData = (character) =>{
+  characters.filter( el => {
+    return character === el.name
+  })
+}
 
 class Model extends React.Component {
 
@@ -22,7 +29,7 @@ class Model extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.character !== nextProps.character) {
+    if (this.props.characterID !== nextProps.characterID) {
       const bounceValue = this.state.bounceValue
       // animate the character
       const modelConfig = {
@@ -72,7 +79,7 @@ class Model extends React.Component {
   render() {
     const { rotation } = this.state
     const scale = this.state.bounceValue
-    const character = this.props.character
+    const characterDetails = this.props.characterDetails
     return (
       <View>
         <AmbientLight intensity={1.0} color={'#ffffff'} />
@@ -82,14 +89,9 @@ class Model extends React.Component {
         />
         <Animated.View style={{transform: [{scale}]}}>
           <Entity 
-            source={{gltf2: asset('./models/yoshi/yoshi.glb')}} 
+            source={{gltf2: asset(characterDetails.modelPath)}} 
             style={{
-              transform: [
-                {scaleX: 0.3},
-                {scaleY: 0.3},
-                {scaleZ: 0.3},
-                {rotateY: rotation}
-              ]
+              transform: [{rotateY: rotation}, ...characterDetails.scaleArray ]
             }}
             />
         </Animated.View>

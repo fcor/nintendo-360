@@ -1,16 +1,15 @@
 import React from 'react'
 import { View, VrButton, StyleSheet, Image, asset } from 'react-360'
 import {connect, setCharacter} from '../store'
-
-const characters = ['koopa', 'mario', 'luigi', 'bowser', 'yoshi', 'donkeykong']
+import characters from '../characters'
 
 class Menu extends React.Component {
   render() {
     return (
       <View style={styles.menu}>
-        {characters.map(character => {
+        {characters.map((character, index) => {
           return (
-            <CharacterButton key={character} character={character} />
+            <CharacterButton key={character.name} character={character} index={index} />
           )})
         }
       </View>
@@ -46,15 +45,15 @@ class CharacterButton extends React.Component {
   }
 
   render() {
-    const { character } = this.props
+    const { character, index } = this.props
     const hover = this.state.hover
     return (
       <VrButton onEnter={this.handleEnter}
                 onExit={this.handleExit}
-                onClick={() => this.handleClick(character)}
+                onClick={() => this.handleClick(index)}
       >
         <Image style={[styles.image, hover ? styles.imageHover : null]} 
-               source={asset(`${character}.png`)} 
+               source={asset(character.thumbnail)} 
         />
       </VrButton>
     )
