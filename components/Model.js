@@ -6,12 +6,6 @@ import PointLight from 'PointLight'
 import { connect } from '../store'
 import characters from '../characters'
 
-const getModelData = (character) =>{
-  characters.filter( el => {
-    return character === el.name
-  })
-}
-
 class Model extends React.Component {
 
   constructor(props){
@@ -91,7 +85,7 @@ class Model extends React.Component {
           <Entity 
             source={{gltf2: asset(characterDetails.modelPath)}} 
             style={{
-              transform: [{rotateY: rotation}, ...characterDetails.scaleArray ]
+              transform: [{rotateY: rotation}, ...characterDetails.scaleArray]
             }}
             />
         </Animated.View>

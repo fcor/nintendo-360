@@ -30,13 +30,13 @@ const characters = [
     ]
   },
   {
-    name: 'LUIGI',
-    modelPath: './models/luigi/luigi.glb',
-    thumbnail: 'luigi.png',
+    name: 'LUCARIO',
+    modelPath: './models/lucario/lucario.glb',
+    thumbnail: 'lucario.png',
     scaleArray: [
-      {scaleX: 0.01},
-      {scaleY: 0.01},
-      {scaleZ: 0.01},
+      {scaleX: 0.07},
+      {scaleY: 0.07},
+      {scaleZ: 0.07},
     ]
   },
   {

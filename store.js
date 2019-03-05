@@ -37,7 +37,8 @@ export function setCharacter(value) {
 export function connect(Component) {
   return class Wrapper extends React.Component {
     state = {
-      character: State.character,
+      characterID: State.characterID,
+      characterDetails: State.characterDetails,
     };
 
     _listener = () => {
