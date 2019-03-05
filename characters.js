@@ -18,7 +18,7 @@ const characters = [
       {scaleY: 0.3},
       {scaleZ: 0.3},
       {translateY: 4},
-      {translateX: 2},
+      {translateX: 3},
     ]
   },
   {
@@ -56,9 +56,9 @@ const characters = [
     modelPath: './models/donkeykong/donkeykong.glb',
     thumbnail: 'donkeykong.png',
     scaleArray: [
-      {scaleX: 1.3},
-      {scaleY: 1.3},
-      {scaleZ: 1.3},
+      {scaleX: 1.4},
+      {scaleY: 1.4},
+      {scaleZ: 1.4},
     ]
   }
 ]
