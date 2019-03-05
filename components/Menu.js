@@ -62,21 +62,24 @@ class CharacterButton extends React.Component {
 
 const styles = StyleSheet.create({
   menu: {
-    width: 900,
+    width: 400,
     height: 620,
-    paddingTop: 20,
-    backgroundColor: 'transparent',
+    // paddingTop: 20,
+    // backgroundColor: 'transparent',
     // backgroundColor: 'rgba(0, 0, 0, 0.5)',
     // borderColor: '#303050',
     // borderWidth: 2,
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'flex-start',
+    justifyContent: 'center',
+    alignItems: 'center',
     flexWrap: 'wrap',
+    paddingTop: 25,
   },
   image: {
-    width: 130,
-    height: 130,
+    width: 170,
+    height: 170,
+    marginBottom: 20,
+    marginRight: 20
   },
   imageHover: {
     transform: [

@@ -7,7 +7,7 @@ function init(bundle, parent, options = {}) {
     ...options,
   });
 
-  const rightPanel = new Surface(900, 620, Surface.SurfaceShape.Cylinder);
+  const rightPanel = new Surface(1000, 620, Surface.SurfaceShape.Cylinder);
   r360.renderToSurface(
     r360.createRoot('menu'),
     rightPanel,
@@ -15,7 +15,7 @@ function init(bundle, parent, options = {}) {
 
   r360.renderToLocation(
     r360.createRoot('model'),
-    new Location([0, -2, -10]),
+    new Location([3, -2, -10]),
   );
 
   // Load the initial environment

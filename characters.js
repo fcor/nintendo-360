@@ -17,6 +17,8 @@ const characters = [
       {scaleX: 0.3},
       {scaleY: 0.3},
       {scaleZ: 0.3},
+      {translateY: 4},
+      {translateX: 2},
     ]
   },
   {
